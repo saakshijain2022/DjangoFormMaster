@@ -1,0 +1,167 @@
+<h1>django-form-field-validation</h1>
+
+<p>into forms.py file of geeks app.</p>
+<!-- from django import forms
+
+class GeeksForm(forms.Form):
+	geeks_field = forms.CharField(
+				error_messages = {
+				'required':"Please Enter your Name"
+				})
+ -->
+
+ <p>Add the geeks app to INSTALLED_APPS</p>
+
+ <!-- # Application definition
+
+INSTALLED_APPS = [
+	'django.contrib.admin',
+	'django.contrib.auth',
+	'django.contrib.contenttypes',
+	'django.contrib.sessions',
+	'django.contrib.messages',
+	'django.contrib.staticfiles',
+	'geeks',
+]
+ -->
+
+ <p>Now to render this form into a view we need a view and a URL mapped to that view. </p>
+
+ <h1>create a view first in views.py of geeks app, </h1>
+
+ <!-- from django.shortcuts import render
+from .forms import GeeksForm
+
+# Create your views here.
+def home_view(request):
+	context = {}
+	form = GeeksForm(request.POST or None)
+	context['form'] = form
+	if request.POST:
+		if form.is_valid():
+			temp = form.cleaned_data.get("geeks_field")
+			print(temp)
+	return render(request, "home.html", context)
+ -->
+
+<h1>Lets create a form in home.html.</h1>
+
+<!-- <form method = "POST">
+	{% csrf_token %}
+	{{ form }}
+	<input type = "submit" value = "Submit">
+</form>
+ -->
+
+ <h1>Finally, a URL to map to this view in urls.py</h1>
+
+ <!-- from django.urls import path
+
+# importing views from views..py
+from .views import home_view
+
+URLpatterns = [
+	path('', home_view ),
+]
+ -->
+
+<fieldset>now if we do not write anything in greek field then error msg will show up</fieldset>
+
+<span>In Django, the form.cleaned_data dictionary contains all the cleaned data that has been validated by the form's fields.
+
+	When you use form.cleaned_data.get("geeks_field"), you're attempting to retrieve the value of the field with the name "geeks_field" from the cleaned_data dictionary. The get() method returns the value of the specified key if it exists, and returns None if it doesn't exist.
+	
+	The return type of form.cleaned_data.get("geeks_field") depends on the type of data the "geeks_field" represents. It could be a string, integer, boolean, or some other data type depending on the field type. If the field is not required and no value was submitted, the method will return None. If the field is required and no value was submitted, the form validation will raise a ValidationError exception before the get() method is called.</span>
+
+
+	<p>now next thing</p>
+	<table>Django form IntegerField</table>
+
+	<h1>code into forms.py file of geeks app.</h1>
+
+	<!-- from django import forms
+
+# creating a form
+class GeeksForm(forms.Form):
+	geeks_field = forms.IntegerField(max_length = 200)
+ -->
+
+ <h1>Add the geeks app to INSTALLED_APPS</h1>
+
+ <!-- # Application definition
+
+INSTALLED_APPS = [
+	'django.contrib.admin',
+	'django.contrib.auth',
+	'django.contrib.contenttypes',
+	'django.contrib.sessions',
+	'django.contrib.messages',
+	'django.contrib.staticfiles',
+	'geeks',
+]
+ -->
+
+ <h1> in views.py of geeks app,</h1>
+
+ <!-- from django.shortcuts import render
+from .forms import GeeksForm
+
+# Create your views here.
+def home_view(request):
+	context = {}
+	context['form'] = GeeksForm()
+	return render( request, "home.html", context)
+ -->
+
+ <h1>a form in home.html</h1>
+
+ <!-- <form method="POST">
+	{% csrf_token %}
+	{{ form.as_p }}
+	<input type="submit" value="Submit">
+</form>
+ -->
+
+ <h1>a URL to map to this view in urls.py</h1>
+
+ <!-- from django.urls import path
+
+# importing views from views..py
+from .views import home_view
+
+urlpatterns = [
+	path('', home_view ),
+]
+ -->
+
+ <h1>it is a field to input of Integer numbers.</h1>
+
+ <h1>To perform some logic  How to use IntegerField ?</h1>
+
+ <h1>In views.py,</h1>
+
+ <!-- from django.shortcuts import render
+from .forms import GeeksForm
+
+# Create your views here.
+def home_view(request):
+	context = {}
+	form = GeeksForm(request.POST or None)
+	context['form']= form
+	if request.POST:
+		if form.is_valid():
+			temp = form.cleaned_data.get("geeks_field")
+			print(type(temp))
+	return render(request, "home.html", context)
+ -->
+
+ <h1>In Django, the form.cleaned_data dictionary contains all the cleaned data that has been validated by the form's fields.
+
+	When you use form.cleaned_data.get("geeks_field"), you're attempting to retrieve the value of the field with the name "geeks_field" from the cleaned_data dictionary. The get() method returns the value of the specified key if it exists, and returns None if it doesn't exist.
+	
+	The return type of form.cleaned_data.get("geeks_field") depends on the type of data the "geeks_field" represents. It could be a string, integer, boolean, or some other data type depending on the field type. If the field is not required and no value was submitted, the method will return None. If the field is required and no value was submitted, the form validation will raise a ValidationError exception before the get() method is called.</h1>
+
+
+	<h1 src ='https://www.geeksforgeeks.org/integerfield-django-forms/#field-options'>incomplete Core Field Arguments  </h1>
+
+	

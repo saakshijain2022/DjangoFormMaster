@@ -1,0 +1,43 @@
+<!-- https://getbootstrap.com/docs/4.3/components/forms/ -->
+{% extends 'index.html' %}
+{% load static %}
+{% block title %}My Form{% endblock %}
+{% block content %}
+<h1 style="text-align: center; margin-top: 1rem;">My Form</h1>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6" style="margin: 0 auto;">
+            <!-- since div encloses both mytext and textarea so both will align centre together -->
+            <form method="POST" action="{% url 'submitmyform' %}">
+                {% csrf_token %}
+                <!-- WHEN USE post method then have to write csrf line -->
+                <div class="form-group">
+                    <label for="mytext">MY TEXT</label>
+                    <input type="text" id="mytext" name="mytext" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label for="mytextarea">MyTextarea</label>
+                    <textarea name="mytextarea" id="mytextarea" class="form-control" rows="3"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary"
+                        style="margin: 0 auto; display: block;">Submit</button>
+                </div>
+                <!-- extrra -->
+                <figure class="text-center">
+                    <blockquote class="blockquote">
+                        <p>A well-known quote, contained in a blockquote element.</p>
+                    </blockquote>
+                    <figcaption class="blockquote-footer">
+                        Someone famous in <cite title="Source Title">Source Title</cite>
+                    </figcaption>
+                </figure>
+                <!-- output A well-known quote, contained in a blockquote element.
+                       --Someone famous in Source Title -->
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
